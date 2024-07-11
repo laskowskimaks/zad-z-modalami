@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h5 class="modal-title">Add new brainiac</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row mb-3">
+            <div class="col">
+                <label for="first_name" class="form-label">First name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="first_name" placeholder="Type in the first name"
+                    formControlName="first_name" required>
+            </div>
+            <div class="col">
+                <label for="last_name" class="form-label">Last name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="last_name" placeholder="Type in the last name"
+                    formControlName="last_name" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail <span class="text-danger">*</span></label>
+            <input type="email" class="form-control" id="email" placeholder="Type in the email" formControlName="email"
+                required>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')"
+                style="background-color: #b15b5b">Close</button>
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid"
+                style="background-color: #44001a">Save</button>
+        </div>
+    </form>
+</div>

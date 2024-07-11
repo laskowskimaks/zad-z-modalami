@@ -1,0 +1,14 @@
+<td>
+    {{ user.id }}
+</td>
+<td>
+    <img [src]="user.avatar" alt="avatar" width="50" height="50" />
+</td>
+<td>{{ user.first_name }}</td>
+<td>{{ user.last_name }}</td>
+<td>{{ user.email }}</td>
+<td>
+    <fa-icon [icon]="faPenToSquare" (click)="updateUser(user)"></fa-icon>
+    <fa-icon [icon]="faTrashCan" (click)="deleteUser(user)"></fa-icon>
+    <!-- <i class="fa-solid fa-trash-can" (click)="deleteUser(user)"></i> -->
+</td>
