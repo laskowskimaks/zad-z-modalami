@@ -9,6 +9,7 @@ import {
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UpdateBrainiacModalComponent } from '../../modals/update-brainiac-modal/update-brainiac-modal.component';
 import { DeleteBrainiacModalComponent } from '../../modals/delete-brainiac-modal/delete-brainiac-modal.component';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'tr[app-row]',
@@ -18,17 +19,21 @@ import { DeleteBrainiacModalComponent } from '../../modals/delete-brainiac-modal
 export class RowComponent {
 
   @Input() user!: User;
-  usersList: User[] = [];
 
   faTrashCan = faTrashCan;
   faPenToSquare = faPenToSquare;
 
-  private modalService = inject(NgbModal);
+  constructor(private userService: UserService, private modalService: NgbModal) { }
 
   updateUser(user: User) {
     const modalRef = this.modalService.open(UpdateBrainiacModalComponent);
     modalRef.componentInstance.user = user;
-    // modalRef.componentInstance.usersList = this.usersList;
+
+    modalRef.result.then((updatedUser) => {
+      if (user) {
+        this.userService.updateUserToList(updatedUser);
+      }
+    });
   }
 
   deleteUser(user: User) {

@@ -47,9 +47,7 @@ export class AddBrainiacModalComponent {
       this.newBrainiac.first_name = this.form.value.first_name;
       this.newBrainiac.last_name = this.form.value.last_name;
       this.newBrainiac.email = this.form.value.email;
-
       this.activeModal.close(this.newBrainiac);
-
     }
   }
 }

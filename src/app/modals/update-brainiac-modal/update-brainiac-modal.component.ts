@@ -12,10 +12,7 @@ import { UserService } from '../../user.service';
   styleUrl: './update-brainiac-modal.component.scss'
 })
 export class UpdateBrainiacModalComponent {
-
-
   @Input() user!: User;
-  usersList!: User[];
 
   form: FormGroup;
 
@@ -45,21 +42,8 @@ export class UpdateBrainiacModalComponent {
         ...this.user,
         ...this.form.value,
       };
+      this.activeModal.close(updatedUser);
 
-      this.userService.updateUser(updatedUser).subscribe(
-        (response) => {
-          //console.log('User updated successfully', response);
-          const index = this.usersList.findIndex((u) => u.id === response.id);
-          if (index !== -1) {
-            this.usersList[index] = response;
-          }
-          console.log(this.usersList);
-          this.activeModal.close('Save click');
-        },
-        (error) => {
-          console.error('Error updating user', error);
-        }
-      );
     }
   }
 }

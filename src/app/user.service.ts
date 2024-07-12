@@ -42,7 +42,7 @@ export class UserService {
 
   addNewUserToList(user: User) {
 
-    this.createUser(user).subscribe(
+    this.createUserApi(user).subscribe(
       (response) => {
         this.usersListService.push(response);
       },
@@ -52,11 +52,27 @@ export class UserService {
     );
   }
 
-  createUser(user: User): Observable<User> {
+  private createUserApi(user: User): Observable<User> {
     return this.http.post<User>(this.apiUrl, user);
   }
 
-  updateUser(user: User): Observable<User> {
+  updateUserToList(updatedUser: User) {
+
+    this.updateUserApi(updatedUser).subscribe(
+      (response) => {
+        const index = this.usersListService.findIndex((u) => u.id === response.id);
+        if (index !== -1) {
+          this.usersListService[index] = response;
+        }
+      },
+      (error) => {
+        console.error('Error updating user', error);
+      }
+    );
+
+  }
+
+  private updateUserApi(user: User): Observable<User> {
     return this.http.put<User>(`${this.apiUrl}/${user.id}`, user);
   }
 
