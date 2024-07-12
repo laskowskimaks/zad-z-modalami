@@ -10,21 +10,23 @@ import { User } from './user.model';
 export class UserService {
   private apiUrl = 'https://reqres.in/api/users';
 
-  usersList: User[] = [
-  ];
-
-  subject = new BehaviorSubject(this.usersList);
+  usersListService: User[] = [];
 
   constructor(private http: HttpClient) {
+
+    this.initUsers();
   }
 
-  getUsers(): Observable<User[]> {
-    return this.http
-      .get<{ data: User[] }>(this.apiUrl)
+  private initUsers() {
+    this.fetchUsersFromApi().subscribe((users) => {
+      this.usersListService = users;
+    })
+  }
+
+  fetchUsersFromApi(): Observable<User[]> {
+    return this.http.get<{ data: User[] }>(this.apiUrl)
       .pipe(
         map((response) => {
-          this.usersList = response.data;
-          console.log('dupa ' + this.usersList);
           return response.data;
         }),
         catchError((error) => {
@@ -34,9 +36,8 @@ export class UserService {
       );
   }
 
-  private deleteUserAPI(id: number): Observable<any> {
-
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  getUsersListFromService() {
+    return this.usersListService;
   }
 
   createUser(user: User): Observable<User> {
@@ -47,16 +48,19 @@ export class UserService {
     return this.http.put<User>(`${this.apiUrl}/${user.id}`, user);
   }
 
+  private deleteUserAPI(id: number): Observable<any> {
+
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
   deleteUserFromList(user: User) {
     if (user) {
       this.deleteUserAPI(user.id).subscribe({
         next: () => {
-          this.usersList = this.usersList.filter(
+          this.usersListService = this.usersListService.filter(
             (u) => u.id !== user.id
           );
-          this.subject.next(this.usersList);
-
-          console.log('delete ' + this.usersList);
+          console.log('delete ' + this.usersListService);
         },
         error: (err) => {
           console.error('Error deleting user', err);

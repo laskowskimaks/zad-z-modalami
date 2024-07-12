@@ -46,7 +46,7 @@ export class AddBrainiacModalComponent {
   }
 
   onSubmit() {
-    this.usersList = this.userService.usersList
+    this.usersList = this.userService.usersListService
     if (this.form.valid) {
       this.newBrainiac.first_name = this.form.value.first_name;
       this.newBrainiac.last_name = this.form.value.last_name;

@@ -15,25 +15,16 @@ import { AddBrainiacModalComponent } from '../../modals/add-brainiac-modal/add-b
 
 })
 export class TableComponent {
-
   faUserGroup = faUserGroup;
   faPlus = faPlus;
 
-  usersList: User[] = [];
+  usersListTable: User[] = [];
 
-  private modalService = inject(NgbModal);
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    console.log('lista')
-    // this.getUsersFromService();
-    this.userService.getUsers().subscribe((users) => {
-      this.userService.usersList = users;
-    });
-    this.userService.subject.subscribe((u) => {
-      this.usersList = u;
-    });
+    this.usersListTable = this.userService.getUsersListFromService();
   }
 
   createUser() {
@@ -41,11 +32,7 @@ export class TableComponent {
     // modalRef.componentInstance.usersList = this.usersList;
   }
 
-  getUsersFromService() {
-    this.userService.getUsers().subscribe((data) => {
-      this.usersList = data;
-    });
-  }
+
 
 
 }
