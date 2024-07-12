@@ -32,6 +32,7 @@ export class TableComponent {
 
     modalRef.result.then((user) => {
       if (user) {
+        console.log(user);
         this.userService.addNewUserToList(user);
       }
     });

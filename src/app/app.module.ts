@@ -8,10 +8,12 @@ import { BrainiacsModule } from './brainiacs/brainiacs.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddBrainiacModalComponent } from './modals/add-brainiac-modal/add-brainiac-modal.component';
+import { Notfound404Component } from './notfound404/notfound404.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    Notfound404Component,
   ],
   imports: [
     BrowserModule,

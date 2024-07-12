@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TableComponent } from './table/table.component';
 import { RowComponent } from './row/row.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrainiacsRoutingModule } from './brainiacs-routing.module';
 
 
 
@@ -13,7 +14,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrainiacsRoutingModule
   ],
   exports: [
     TableComponent

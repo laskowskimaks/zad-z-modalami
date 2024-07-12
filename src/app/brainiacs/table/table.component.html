@@ -1,16 +1,15 @@
-<div class="header-section">
-    <div class="header-title">
-        <fa-icon [icon]="faUserGroup"></fa-icon>
-        <!-- <i class="fa-solid fa-user-group"></i> -->
+<div class="header-section d-flex justify-content-between align-items-center pt-1">
+    <div class="header-title  d-flex align-items-center">
+        <fa-icon [icon]="faUserGroup" class="pe-2"></fa-icon>
         <h2>List of smart guys</h2>
     </div>
-    <button class="btn btn-brainiac" (click)="createUser()">
-        <fa-icon [icon]="faPlus"></fa-icon>
+    <button class="btn btn-brainiac d-flex align-items-center py-2 px-4 " (click)="createUser()">
+        <fa-icon [icon]="faPlus" class="me-2"></fa-icon>
         Add brainiac
     </button>
 </div>
-<div class="table-section">
-    <table class="table table-striped table-hover">
+<div class="table-section mt-3">
+    <table class="table table-striped table-hover w-100">
         <thead>
             <tr>
                 <th>Id</th>

@@ -1,14 +1,14 @@
-<td>
+<td class="p-1 text-left align-middle">
     {{ user.id }}
 </td>
-<td>
+<td class="p-1 text-left align-middle">
     <img [src]="user.avatar" alt="avatar" width="50" height="50" />
 </td>
-<td>{{ user.first_name }}</td>
-<td>{{ user.last_name }}</td>
-<td>{{ user.email }}</td>
-<td>
-    <fa-icon [icon]="faPenToSquare" (click)="updateUser(user)"></fa-icon>
+<td class="p-1 text-left align-middle">{{ user.first_name }}</td>
+<td class="p-1 text-left align-middle">{{ user.last_name }}</td>
+<td class="p-1 text-left align-middle">{{ user.email }}</td>
+<td class="p-1 text-left align-middle">
+    <fa-icon [icon]="faPenToSquare" (click)="updateUser(user)" class="ps-3 text-right"></fa-icon>
     <fa-icon [icon]="faTrashCan" (click)="deleteUser(user)"></fa-icon>
     <!-- <i class="fa-solid fa-trash-can" (click)="deleteUser(user)"></i> -->
 </td>

@@ -30,7 +30,7 @@ export class RowComponent {
     modalRef.componentInstance.user = user;
 
     modalRef.result.then((updatedUser) => {
-      if (user) {
+      if (updatedUser) {
         this.userService.updateUserToList(updatedUser);
       }
     });
