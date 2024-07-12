@@ -19,12 +19,11 @@ export class DeleteBrainiacModalComponent {
     private userService: UserService
   ) { }
 
-
-
   deleteUser() {
     this.userService.deleteUserFromList(this.user);
-    this.activeModal.close('Modal Closed');
+    this.activeModal.close(this.user);
   }
+
   closeModal() {
     this.activeModal.close('Modal Closed');
   }

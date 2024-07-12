@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../user.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-update-brainiac-modal',
@@ -18,7 +17,6 @@ export class UpdateBrainiacModalComponent {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private userService: UserService
   ) {
     this.form = new FormGroup({
       first_name: new FormControl('', Validators.required),
@@ -43,7 +41,6 @@ export class UpdateBrainiacModalComponent {
         ...this.form.value,
       };
       this.activeModal.close(updatedUser);
-
     }
   }
 }

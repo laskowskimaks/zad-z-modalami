@@ -76,19 +76,20 @@ export class UserService {
     return this.http.put<User>(`${this.apiUrl}/${user.id}`, user);
   }
 
-  private deleteUserAPI(id: number): Observable<any> {
-
-    return this.http.delete(`${this.apiUrl}/${id}`);
-  }
-
   deleteUserFromList(user: User) {
     if (user) {
       this.deleteUserAPI(user.id).subscribe({
         next: () => {
-          this.usersListService = this.usersListService.filter(
-            (u) => u.id !== user.id
-          );
-          console.log('delete ' + this.usersListService);
+          this.usersListService.splice(this.findIndexById(user.id), 1);
+          //this.usersListService = this.usersListService.filter(u => u.id !== user.id);
+          // this.usersListService.push({
+          //   id: 78,
+          //   email: 'test',
+          //   first_name: 'test',
+          //   last_name: 'test',
+          // });
+          console.log(this.usersListService);
+          return user;
         },
         error: (err) => {
           console.error('Error deleting user', err);
@@ -96,4 +97,19 @@ export class UserService {
       });
     }
   }
+
+  private deleteUserAPI(id: number): Observable<any> {
+
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  private findIndexById(id: number): number {
+    for (var i = 0; i < this.usersListService.length; i++) {
+      if (this.usersListService[i].id === id) {
+        return i
+      }
+    }
+    return -1
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input } from '@angular/core';
 import { User } from '../../user.model';
 import {
   faPlus,
@@ -23,7 +23,7 @@ export class RowComponent {
   faTrashCan = faTrashCan;
   faPenToSquare = faPenToSquare;
 
-  constructor(private userService: UserService, private modalService: NgbModal) { }
+  constructor(private userService: UserService, private modalService: NgbModal, private cdr: ChangeDetectorRef) { }
 
   updateUser(user: User) {
     const modalRef = this.modalService.open(UpdateBrainiacModalComponent);
@@ -34,6 +34,7 @@ export class RowComponent {
         this.userService.updateUserToList(updatedUser);
       }
     });
+
   }
 
   deleteUser(user: User) {
