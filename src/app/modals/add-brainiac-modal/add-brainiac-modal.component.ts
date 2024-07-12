@@ -19,8 +19,6 @@ import { UserService } from '../../user.service';
 export class AddBrainiacModalComponent {
   form: FormGroup;
 
-  usersList!: User[];
-
   newBrainiac: User = {
     id: 0,
     first_name: '',
@@ -33,7 +31,6 @@ export class AddBrainiacModalComponent {
     public activeModal: NgbActiveModal,
     private userService: UserService
   ) {
-    console.log('dupa ' + this.usersList)
     this.form = new FormGroup({
       first_name: new FormControl('', Validators.required),
       last_name: new FormControl('', Validators.required),
@@ -46,21 +43,13 @@ export class AddBrainiacModalComponent {
   }
 
   onSubmit() {
-    this.usersList = this.userService.usersListService
     if (this.form.valid) {
       this.newBrainiac.first_name = this.form.value.first_name;
       this.newBrainiac.last_name = this.form.value.last_name;
       this.newBrainiac.email = this.form.value.email;
 
-      this.userService.createUser(this.newBrainiac).subscribe(
-        (response) => {
-          this.usersList.push(response);
-          this.activeModal.close('Save click');
-        },
-        (error) => {
-          console.error('Error creating user', error);
-        }
-      );
+      this.activeModal.close(this.newBrainiac);
+
     }
   }
 }

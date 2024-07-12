@@ -40,6 +40,18 @@ export class UserService {
     return this.usersListService;
   }
 
+  addNewUserToList(user: User) {
+
+    this.createUser(user).subscribe(
+      (response) => {
+        this.usersListService.push(response);
+      },
+      (error) => {
+        console.error('Error creating user', error);
+      }
+    );
+  }
+
   createUser(user: User): Observable<User> {
     return this.http.post<User>(this.apiUrl, user);
   }

@@ -29,7 +29,12 @@ export class TableComponent {
 
   createUser() {
     const modalRef = this.modalService.open(AddBrainiacModalComponent);
-    // modalRef.componentInstance.usersList = this.usersList;
+
+    modalRef.result.then((user) => {
+      if (user) {
+        this.userService.addNewUserToList(user);
+      }
+    });
   }
 
 
